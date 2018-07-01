@@ -11,7 +11,7 @@
 .. _Kepler: https://2sn.org/kepler/doc/
 
 xrb
-==
+===
 
 A repository of tools for dealing with and analyzing X-ray burst data from
 Kepler_.  Many scientists that have access to
