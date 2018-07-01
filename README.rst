@@ -8,9 +8,11 @@
 .. .. image:: https://coveralls.io/repos/github/*github_repository*/badge.svg?branch=master
     :target: https://coveralls.io/github/*github_repository*?branch=master
 
+.. _Kepler: https://2sn.org/kepler/doc/
+
 xrb
 ==
-.. _Kepler: https://2sn.org/kepler/doc/
+
 A repository of tools for dealing with and analyzing X-ray burst data from
 Kepler_.  Many scientists that have access to
 Kepler develop often redundant code for carrying out similar analysis, sometimes
