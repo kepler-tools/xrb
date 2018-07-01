@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 # Save version and author to __meta__.py
 version = open('VERSION').read().strip()
 dirname = os.path.dirname(__file__)
-path = os.path.join(dirname, 'src', 'xrb', '__meta__.py')
+path = os.path.join(dirname, 'xrb', '__meta__.py')
 meta = '''# Automatically created. Please do not edit.
 __version__ = '%s'
 __author__ = 'Adam Jacobs'
@@ -46,8 +46,8 @@ setup(
     ],
 
     # Packages and dependencies
-    package_dir={'': 'src'},
-    packages=find_packages('src'),
+    package_dir={'': 'xrb'},
+    packages=find_packages('xrb'),
     install_requires=[
     ],
     extras_require={
