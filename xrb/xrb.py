@@ -8,6 +8,26 @@ data.
 #NOTE: For now, I'm just dumping all code here.  As things grow, we can discuss
 #refactoring and creating new submodules and such.
 
+from collections.abd import Mapping
+# This is my stab at a class I've been wanted for a long while: DefinedDict.  My
+# intuition is that something must already exist that does this, but I just
+# can't find it/figure it out, so I'm trying to make it on my own.  If it works,
+# I'll move it out of this project into something stand-alone, as I want it for
+# multiple projects.
+#
+# DefinedDict is a restricted variation on Python's dict.  It has a defined set
+# of keys/fields that is established on creation and cannot be changed
+# afterward.  However, the data the keys point to CAN be updated, changed.  I
+# could make a class, but by subclassing Mapping I get lots of stuff (including
+# dict-like syntax) and performance for free.  I subclass Mapping instead of
+# MutableMapping because MM suggests the ability to add, change, remove keys,
+# which I don't want.
+class DefinedDict(Mapping):
+    pass
+
+#Do I want/need this? Leaving here for reference for now.
+#DefinedDict.register(dict)
+
 # XRBData class for loading in, storing, and saving data pertinent to X-ray
 # bursts.  
 #
