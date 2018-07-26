@@ -20,19 +20,50 @@ from tfile import TemplateFile
 # knows how to use it.  It also curates the data for X-ray burst analysis.
 # Kepler's tools give you the kitchen sink and often require some understanding
 # of Kepler conventions and source code.
-class XRBData(object):
+class XRBSensData(object):
     """
-    A class for loading, storing, and saving X-ray burst data.
+    A class for loading, storing, and saving X-ray burst sensitivity data.
     """
-
-    def __init__(self):
-        """
-        XRBData(
-        """
-        pass
 
     #TODO: Add Parameters and Examples sections to docstring when ready.
-    pass
+    def __init__(self, grid_label, grid_desc):
+        """
+        Initialize a minimal XRBSensData with mostly empty data.
+
+        Only a label and description of the grid is required.  Use print_fields() to
+        see the set of fields defined for the grid.
+        """
+        self._grid_data = self._initGridDict()
+        self._grid_data['grid_label'] = grid_label
+        self._grid_data['grid_desc']  = grid_desc
+
+    def _initGridDict(self):
+        """Initialize a DefinedDict describing grid data."""
+        from collections import OrderedDict
+        field_descriptions = OrderedDict({
+            'grid_label': 'Label for the grid, should be a valid filename' +
+                          'as it will be used in creating directory structures.',
+            'grid_desc': 'Brief description of the grid',
+            'x': 'Accreted hydrogen mass fraction',
+            'z': 'Accreted metallicity mass fraction, all as X_n14',
+            'qb': 'Base heating in MeV/nucleon, models energy released at' +
+                  'base per accreted nucleon',
+            'eddf': 'Eddington fraction, expresses accretion rate as a ' +
+                    'fraction of the Eddington accretion rate',
+            'xi': 'A factor that scales the accretion rate, was introduced ' +
+                  'to capture anisotropy effects',
+            'acc_lum': 'The luminosity generated at the base in response ' +
+                       'to accretion, given in erg/s',
+            'acc_rate': 'Accretion rate in M_sol / yr',
+            'gee': 'Surface gravity of the model in cm / s^2',
+            'vary_list': "array of tuples ('rxn_label', scale_fac), one for each variation in the grid",
+            'model_data': "Mapping (dict) of model labels to DefinedDicts of model data."})
+        init_dict = dict.fromkeys(field_descriptions.keys())
+        return DefinedDict(init_dict, field_descriptions)
+
+    def print_fields(self):
+        """Print the fields and their descriptions."""
+        print(self._grid_data.fields_str())
 
 class XRBAnalysis(object):
     """

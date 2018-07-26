@@ -117,7 +117,7 @@ class DefinedDict(Mapping):
                     raise KeyError(error_message)
             #TODO: Check that desc_map is all strings, and if copy() should be
             #      guaranteed for mappings
-            self._fields = frozenset([f for f in desc_map.keys()])
+            self._fields = frozenset(desc_map.keys())
             if not (self._fields == set(desc_map.keys()) == set(init_dict.keys())):
                 raise ValueError('init_dict and desc_map do not have the same keys!')
             self._desc = desc_map.copy()
@@ -174,7 +174,7 @@ class DefinedDict(Mapping):
             self._data[key] = value
         else:
             raise KeyError(
-                  '`{}` is not a valid field in this DefinedDict'.format(key))
+                  '"{}" is not a valid field in this DefinedDict'.format(key))
 
     def __delitem__(self, key):
         raise TypeError('DefinedDict fields (keys) are immutable, cannot be deleted')
@@ -192,7 +192,7 @@ class DefinedDict(Mapping):
         ret_str = "DefinedDict class instance\n{}".format(
             join_str.join(
                 (field_str.format(field, self._desc[field], self._data[field])
-                for field in self._fields)))
+                for field in self._desc)))
         return ret_str
 
     #TODO: __repr__, which as much as possible should be valid Python code that
